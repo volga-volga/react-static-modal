@@ -1,37 +1,31 @@
 {
   "license": "ISC",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Kalianov Egor",
   "name": "react-static-modal",
   "description": "Static modal",
   "dependencies": {
-    "@babel/core": "^7.7.5",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-transform-modules-umd": "^7.7.4",
-    "@babel/polyfill": "^7.7.0",
-    "@babel/preset-env": "^7.7.6",
-    "@babel/preset-react": "^7.8.3",
     "@types/react": "^16.8.22",
     "@types/react-dom": "^16.8.4",
-    "babel-loader": "^8.0.6",
-    "css-loader": "^3.4.2",
-    "mini-css-extract-plugin": "^0.9.0",
-    "node-sass": "^4.13.1",
-    "paths": "^0.1.1",
-    "postcss-flexbugs-fixes": "^4.1.0",
-    "postcss-loader": "^3.0.0",
-    "postcss-normalize": "^8.0.1",
-    "postcss-preset-env": "^6.7.0",
     "react": "^16.8.5",
-    "react-dom": "^16.8.5",
-    "react-hot-loader": "^4.12.18",
-    "sass-loader": "^8.0.2",
-    "style-loader": "^1.1.3",
-    "webpack": "^4.41.3",
-    "webpack-cli": "^3.3.10"
+    "react-dom": "^16.8.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "fs-extra": "^8.1.0",
+    "grunt": "^1.0.4",
+    "grunt-babel": "^8.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-cssbeautifier": "^0.1.2",
+    "grunt-sass": "^3.1.0",
+    "node-sass": "^4.13.1",
+    "path": "^0.12.7"
   },
   "scripts": {
-    "start": "rm -rf build && webpack --mode production --config ./webpack/compile.js"
+    "prepublish": "rm -rf dist && grunt --gruntfile ./compiler.js prepublish"
   },
   "keywords": [
     "react",
@@ -48,8 +42,5 @@
   "bugs": {
     "url": "https://github.com/volga-volga/react-static-modal/issues"
   },
-  "homepage": "https://github.com/volga-volga/react-static-modal#readme",
-  "devDependencies": {
-    "webpack-cli": "^3.3.10"
-  }
+  "homepage": "https://github.com/volga-volga/react-static-modal#readme"
 }
