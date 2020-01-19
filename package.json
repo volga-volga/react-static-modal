@@ -10,7 +10,7 @@
     "react": "^16.8.5",
     "react-dom": "^16.8.5"
   },
-  "keywords": [],
+  "keywords": ["react", "popup", "modal", "static"],
   "main": "index.js",
   "repository": {
     "type": "git",
