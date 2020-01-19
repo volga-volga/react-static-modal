@@ -1,5 +1,5 @@
-import Modal from "./source/Modal";
-import StaticModal from "./source/StaticModal";
+import Modal from "./dist/Modal";
+import StaticModal from "./dist/StaticModal";
 
 export { Modal };
 export default StaticModal;
