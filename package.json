@@ -1,0 +1,23 @@
+{
+  "license": "ISC",
+  "version": "1.0.0",
+  "author": "Kalianov Egor",
+  "name": "react-static-modal",
+  "description": "Static modal",
+  "dependencies": {
+    "@types/react": "^16.8.22",
+    "@types/react-dom": "^16.8.4",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5"
+  },
+  "keywords": [],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/volga-volga/react-static-modal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/volga-volga/react-static-modal/issues"
+  },
+  "homepage": "https://github.com/volga-volga/react-static-modal#readme"
+}

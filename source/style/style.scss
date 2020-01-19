@@ -1,0 +1,151 @@
+$radius: 0;
+$white: #fff;
+$black: #000;
+$closeSize: 24px;
+$zIndexModal: 1000;
+$closeLineHeight: 1px;
+$transition: all 250ms;
+$closeLineWidth: 24 * 1.414px;
+$closeLineColor: rgba($black, 0.7);
+
+.scroll-brake {
+  overflow: hidden;
+}
+
+body {
+  .modal {
+    position: fixed;
+    z-index: $zIndexModal;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100vw;
+    height: 100%;
+    max-height: 100%;
+
+    &__fade {
+      position: fixed;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      transition: $transition;
+
+      opacity: 0;
+      background: $black;
+    }
+
+    &_visible {
+      .modal__fade {
+        opacity: 0.75;
+      }
+
+      .scroll-container__wrapper-content {
+        transform: translate(0, 0) !important;
+
+        opacity: 1 !important;
+      }
+    }
+
+    .scroll-container {
+      position: relative;
+      z-index: 10;
+
+      overflow-y: scroll;
+
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+
+      &__wrapper {
+        position: relative;
+
+        display: flex;
+        align-items: center;
+
+        box-sizing: border-box;
+        min-height: 100%;
+        margin: auto;
+        padding: 60px 0;
+
+        &-content {
+          z-index: 11111;
+
+          display: flex;
+
+          width: 90%;
+          max-width: 1000px;
+          margin: 0 auto;
+
+          opacity: 0;
+          background: $white;
+        }
+      }
+    }
+
+    .cross-container {
+      position: absolute;
+      z-index: 10;
+      top: 24px;
+      right: 24px;
+
+      width: $closeSize;
+      height: $closeSize;
+
+      cursor: pointer;
+
+      &:hover {
+        .cross-container {
+          &__wrapper {
+            transform: rotate(45deg);
+          }
+        }
+      }
+
+      &__wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        transition: $transition;
+
+        &-content {
+          position: absolute;
+          top: 50%;
+          left: 0;
+
+          transition: $transition;
+
+          &:before,
+          &:after {
+            display: block;
+
+            width: $closeLineWidth;
+            height: $closeLineHeight;
+
+            content: '';
+
+            background: $closeLineColor;
+          }
+
+          &:before {
+            transform: rotate(-45deg) translate(-3px, -3px);
+          }
+
+          &:after {
+            transform: rotate(45deg) translate(-4px, 3px);
+          }
+        }
+      }
+    }
+  }
+}
