@@ -1,17 +1,29 @@
-import React  from "react";
+import React from "react";
 import Modal from "./Modal";
 
-const showModal = (instance) => () => {
+const showModal = instance => () => {
   if (instance && instance.modal) {
     const { clickReady, state } = instance.modal;
     if (clickReady && !state.visible) instance.modal.onShow();
   }
 };
 
-const withStatic = (WrappedContent) => {
+const withStatic = WrappedContent => {
   class StaticModal extends React.Component {
     static instance = undefined;
-    
+
+    static show(additionalShowProps = {}) {
+      const { instance } = StaticModal;
+      if (instance) {
+        instance.setState({ ...additionalShowProps }, showModal(instance));
+      }
+    }
+
+    static hide(withoutScrollBrake) {
+      const { instance } = StaticModal;
+      if (instance && instance.modal) instance.modal.onHide(withoutScrollBrake);
+    }
+
     constructor(props) {
       super(props);
       this.state = {
@@ -24,20 +36,10 @@ const withStatic = (WrappedContent) => {
       this.modal = undefined;
       this.afterShow = this.afterShow.bind(this);
       this.afterHide = this.afterHide.bind(this);
+      this.onRefModal = this.onRefModal.bind(this);
       this.beforeHide = this.beforeHide.bind(this);
       this.beforeShow = this.beforeShow.bind(this);
-    }
-
-    static show(additionalShowProps = {}) {
-      const { instance } = StaticModal;
-      if (instance) {
-        instance.setState({ ...additionalShowProps }, showModal(instance));
-      }
-    }
-
-    static hide(withoutScrollBrake) {
-      const { instance } = StaticModal;
-      if (instance && instance.modal) instance.modal.onHide(withoutScrollBrake);
+      this.getModalProps = this.getModalProps.bind(this);
     }
 
     componentDidMount() {
