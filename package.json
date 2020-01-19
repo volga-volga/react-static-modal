@@ -1,6 +1,6 @@
 {
   "license": "ISC",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Kalianov Egor",
   "name": "react-static-modal",
   "description": "Static modal",
@@ -10,7 +10,29 @@
     "react": "^16.8.5",
     "react-dom": "^16.8.5"
   },
-  "keywords": ["react", "popup", "modal", "static"],
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "fs-extra": "^8.1.0",
+    "grunt": "^1.0.4",
+    "grunt-babel": "^8.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-cssbeautifier": "^0.1.2",
+    "grunt-sass": "^3.1.0",
+    "node-sass": "^4.13.1",
+    "path": "^0.12.7"
+  },
+  "scripts": {
+    "prepublish": "rm -rf dist && grunt --gruntfile ./compiler.js prepublish"
+  },
+  "keywords": [
+    "react",
+    "popup",
+    "modal",
+    "static"
+  ],
   "main": "index.js",
   "types": "index.d.ts",
   "repository": {
