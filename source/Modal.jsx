@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import React, { Component } from "react";
 
-import "./style/style.scss";
+import "./Modal.scss";
 
 const SCROLL_BRAKE_CLASS = "scroll-brake";
 const DELAY = 500;
