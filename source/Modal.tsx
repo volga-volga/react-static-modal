@@ -121,7 +121,7 @@ class Modal extends Component<IModalProps, IModalState> {
     const { children, name } = this.props;
 
     return (
-      <div className={this.getClassName()} data-modal={name}>
+      <div className={this.getClassName()} data-name={name}>
         <div className={this.classNames.scrollContainer}>
           <div className={this.classNames.scrollContainerWrapper}>
             <div className={this.classNames.scrollContainerWrapperContent}>
