@@ -15,7 +15,7 @@ const showModal = (instance: any) => () => {
   }
 };
 
-const withStatic = (WrappedContent: ComponentType) => {
+const withStatic = (WrappedContent: ComponentType<any>) => {
   class StaticModal extends Component<IStaticModalProps, IStaticModalState> {
     public state: IStaticModalState;
     private modal: Modal;
@@ -60,7 +60,7 @@ const withStatic = (WrappedContent: ComponentType) => {
     getModalProps() {
       const { name } = this.props;
       const { afterShow, afterHide, beforeShow, beforeHide } = this;
-      const children: ComponentType = <WrappedContent {...this.state} />;
+      const children: any = <WrappedContent {...this.state} />;
 
       const props: IModalProps = {
         name,

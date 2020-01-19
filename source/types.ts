@@ -13,7 +13,7 @@ interface IModalEvents {
 
 export interface IModalProps extends IModalEvents {
   name: string;
-  children: ReactElement | ComponentType;
+  children: ReactElement | ComponentType<any>;
   
   onRef?: (component: Modal) => void;
 }
