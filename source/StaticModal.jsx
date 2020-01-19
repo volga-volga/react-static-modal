@@ -1,27 +1,18 @@
+import React  from "react";
 import Modal from "./Modal";
-import React, { Component, ComponentType } from "react";
 
-import {
-  IModalProps,
-  TObjectAny,
-  IStaticModalProps,
-  IStaticModalState
-} from "./types";
-
-const showModal = (instance: any) => () => {
+const showModal = (instance) => () => {
   if (instance && instance.modal) {
     const { clickReady, state } = instance.modal;
     if (clickReady && !state.visible) instance.modal.onShow();
   }
 };
 
-const withStatic = (WrappedContent: ComponentType<any>) => {
-  class StaticModal extends Component<IStaticModalProps, IStaticModalState> {
-    public state: IStaticModalState;
-    private modal: Modal;
-
-    static instance?: StaticModal = undefined;
-    constructor(props: IStaticModalProps) {
+const withStatic = (WrappedContent) => {
+  class StaticModal extends React.Component {
+    static instance = undefined;
+    
+    constructor(props) {
       super(props);
       this.state = {
         afterShow: undefined,
@@ -37,14 +28,14 @@ const withStatic = (WrappedContent: ComponentType<any>) => {
       this.beforeShow = this.beforeShow.bind(this);
     }
 
-    static show(additionalShowProps: TObjectAny = {}) {
+    static show(additionalShowProps = {}) {
       const { instance } = StaticModal;
       if (instance) {
         instance.setState({ ...additionalShowProps }, showModal(instance));
       }
     }
 
-    static hide(withoutScrollBrake?: boolean) {
+    static hide(withoutScrollBrake) {
       const { instance } = StaticModal;
       if (instance && instance.modal) instance.modal.onHide(withoutScrollBrake);
     }
@@ -53,16 +44,16 @@ const withStatic = (WrappedContent: ComponentType<any>) => {
       StaticModal.instance = this;
     }
 
-    onRefModal(modal: any) {
+    onRefModal(modal) {
       this.modal = modal;
     }
 
     getModalProps() {
       const { name } = this.props;
       const { afterShow, afterHide, beforeShow, beforeHide } = this;
-      const children: any = <WrappedContent {...this.state} />;
+      const children = <WrappedContent {...this.state} />;
 
-      const props: IModalProps = {
+      const props = {
         name,
         children,
         afterShow,

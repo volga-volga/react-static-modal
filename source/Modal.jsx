@@ -1,18 +1,13 @@
 import ReactDOM from "react-dom";
 import React, { Component } from "react";
-import { IModalProps, IModalState, TObjectString } from "./types";
 
 import "./style/style.scss";
 
 const SCROLL_BRAKE_CLASS = "scroll-brake";
-
 const DELAY = 500;
 
-class Modal extends Component<IModalProps, IModalState> {
-  public state: IModalState;
-  private clickReady: boolean;
-
-  constructor(props: IModalProps) {
+class Modal extends Component {
+  constructor(props) {
     super(props);
     this.state = {
       isShow: false,
@@ -41,7 +36,7 @@ class Modal extends Component<IModalProps, IModalState> {
     window.removeEventListener("keydown", this.onPressedKey.bind(this));
   }
 
-  onShow(newState: TObjectString = {}) {
+  onShow(newState = {}) {
     this.brakeEnable();
     this.setState({ isShow: true }, () => {
       setTimeout(() => {
@@ -53,7 +48,7 @@ class Modal extends Component<IModalProps, IModalState> {
     });
   }
 
-  onHide(withoutScrollBrake?: boolean) {
+  onHide(withoutScrollBrake) {
     const { afterHide, beforeHide } = this.props;
 
     if (this.clickReady) {
@@ -73,9 +68,9 @@ class Modal extends Component<IModalProps, IModalState> {
     }
   }
 
-  onPressedKey(event: any) {
+  onPressedKey(e) {
     const { isShow } = this.state;
-    if (isShow && event.key === "Escape") this.onHide();
+    if (isShow && e.key === "Escape") this.onHide();
   }
 
   brakeEnable() {
@@ -87,19 +82,15 @@ class Modal extends Component<IModalProps, IModalState> {
   }
 
   toggleModal() {
-    const { isShow } = this.state;
+    if (!this.clickReady) return;
 
-    if (this.clickReady) {
-      if (isShow) this.onHide();
-      else this.onShow();
-    }
+    if (this.state.isShow) this.onHide();
+    else this.onShow();
   }
 
   getClassName() {
-    const { isVisible } = this.state;
-
     let className = this.classNames.modal;
-    if (isVisible) className += ` ${this.classNames.modalVisible}`;
+    if (this.state.isVisible) className += ` ${this.classNames.modalVisible}`;
 
     return className;
   }
